@@ -52,4 +52,4 @@ if __name__=='__main__':
     denoised = denoiser.denoise(model, args)
       
     with tifffile.TiffWriter(f"{args.data.split('.')[0]}_{args.model.lower}.tif") as stack:
-        stack.save(denoised)
+        stack.write(denoised)
