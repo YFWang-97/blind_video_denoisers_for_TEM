@@ -45,8 +45,8 @@ python denoise.py\
 ```
 ### Arguments
 * `data` (required): Full path to the `.tif` file containing the video to be denoised.
-* `model`: Model name. Options are `UDVD`, `N2N`, `N2S`, or `UDVD_sf`. Default is UDVD.
-* `num-epochs` Number of training epochs(default: 500).!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+* `model`: Model name. Options are `UDVD`, `N2N`, `N2S`, or `UDVD_sf`. Default is `UDVD`.
+* `num-epochs` Number of training epochs(default: 500).
 * `batch-size`: Number of images per batch for training (default: 2). Adjust based on available memory.
 * `image-size`: Size of the square image patches used for training (default: 256). For N2N, a larger size, such as 512, is recommended to compensate the downsampling step.
 
