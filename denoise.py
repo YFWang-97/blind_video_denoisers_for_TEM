@@ -1,6 +1,7 @@
 import argparse
 import denoisers
 import tifffile
+import numpy as np
 
 def get_args():
     parser = argparse.ArgumentParser(allow_abbrev=False) 
@@ -30,6 +31,10 @@ def get_args():
         type=int,
         help="size of the patch")
     parser.add_argument(
+        "--save-format",
+        default="tif",
+        help="save the denoised result as tif or npy. Default is tif")
+    parser.add_argument(
         "--transforms",
         dest='feature',
         action='store_true')
@@ -50,6 +55,9 @@ if __name__=='__main__':
     
     model = denoiser.train(args)
     denoised = denoiser.denoise(model, args)
-      
-    with tifffile.TiffWriter(f"{args.data.split('.')[0]}_{args.model.lower}.tif") as stack:
-        stack.write(denoised)
+    
+    if args.save_format == "tif":
+        with tifffile.TiffWriter(f"{args.data.split('.')[0]}_{args.model.lower}.tif") as stack:
+            stack.write(denoised)
+    elif args.save_format == "npy":
+        np.save(f"{args.data.split('.')[0]}_{args.model.lower}.npy", denoised)
