@@ -8,7 +8,7 @@ Understanding the structural dynamics of nanoparticle surfaces at the atomic sca
 
 This repository provides an unsupervised denoising framework based on artificial intelligence developed to overcome these limitations. Our denoising pipeline enables atomic-resolution visualization of metal nanoparticle surfaces by leveraging Deep Learning models to exploit the correllation among neighboring pixels and/or frames. 
 
-The provided pipeline can be easilly adapted in order to denoise other data types, either images or videos, beyond TEM videos in `.tif` file.
+The provided pipeline can be easilly adapted in order to denoise other data types, either images or videos, beyond TEM videos in `.tif` or `.npy` file.
 
 ## Denoisers:
 The present package incorporates the following denoisers:
@@ -38,6 +38,7 @@ python denoise.py\
 * `num-epochs` Number of training epochs(default: 50).
 * `batch-size`: Number of images per batch for training (default: 1). Adjust based on available memory.
 * `image-size`: Size of the square image patches used for training (default: 256). For N2N, a larger size, such as 512, is recommended to compensate the downsampling step.
+* `save-format`: Select the format of denoised file (`tif` or `npy`). Default is `tif`.
 
 ### Example
 
