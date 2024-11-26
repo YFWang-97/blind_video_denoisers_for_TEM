@@ -16,7 +16,7 @@ def get_args():
         help="path to .tif file to be denoised")
     parser.add_argument(
         "--num-epochs",
-        default=500,
+        default=50,
         type=int,
         help="epochs for the training. Default is 500")
     parser.add_argument(

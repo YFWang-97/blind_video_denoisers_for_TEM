@@ -14,17 +14,6 @@ The provided pipeline can be easilly adapted in order to denoise other data type
 The present package incorporates the following denoisers:
 * **UDVD (Unsupervised Deep Video Denoising)** from [Paper](https://arxiv.org/abs/2011.15045), [GitHub](https://github.com/sreyas-mohan/udvd)
 
-    Video denoiser using neighboring pixels and frames for each pixel estimation by using blind-spot convolutions.
-* **N2N (Neighbor2Neighbor)**  from [Paper](https://arxiv.org/abs/2101.02824), [GitHub](https://github.com/pminhtam/Neigh2Neigh)
-
-    Image denoiser using random subsamples for neighboring pixel estimation.
-* **N2S (Noise2Self)** from [Paper](https://arxiv.org/abs/1901.11365), [GitHub](https://github.com/czbiohub-sf/noise2self)
-
-    Image denoiser using neighboring pixels for each pixel estimation by using blind-spot convolutions.
-* **UDVD_sf (UDVD single-frame)** 
-
-    UDVD network applied frame-to-frame.
-
 ## Usage
 ### Installation
 ```shell
@@ -40,14 +29,14 @@ python denoise.py\
      --data path_to_tiff_file 
      --model UDVD 
      --num-epochs 500
-     --batch-size 2
+     --batch-size 1
      --image-size 256
 ```
 ### Arguments
-* `data` (required): Full path to the `.tif` file containing the video to be denoised.
+* `data` (required): Full path to the `.tif` or `.npy` file containing the video to be denoised. The `.npy` file should have shape of (frames, x, y).
 * `model`: Model name. Options are `UDVD`, `N2N`, `N2S`, or `UDVD_sf`. Default is `UDVD`.
-* `num-epochs` Number of training epochs(default: 500).
-* `batch-size`: Number of images per batch for training (default: 2). Adjust based on available memory.
+* `num-epochs` Number of training epochs(default: 50).
+* `batch-size`: Number of images per batch for training (default: 1). Adjust based on available memory.
 * `image-size`: Size of the square image patches used for training (default: 256). For N2N, a larger size, such as 512, is recommended to compensate the downsampling step.
 
 ### Example
@@ -55,10 +44,7 @@ python denoise.py\
 The provided `PtCeO2_6.tif` video can be denoised by running the following commands:
 
 ```shell
-python denoise.py --data ./PtCeO2_6.tif --model UDVD # denoise with the UDVD model
-python denoise.py --data ./PtCeO2_6.tif --model N2N # denoise with the Neighbor2Neighbor model
-python denoise.py --data ./PtCeO2_6.tif --model N2S # denoise with the Noise2Self model
-python denoise.py --data ./PtCeO2_6.tif --model UDVD_sf # denoise with the UDVD model applied to single frames
+python denoise.py --data ./examples/PtCeO2_6.tif # denoise with the UDVD model
 ```
 
 ### Citation

@@ -16,7 +16,12 @@ class DataSet(torch.utils.data.Dataset):
     def __init__(self, filename,image_size = None, transforms = False):
         super().__init__()
         self.x = image_size
-        self.img = io.imread(filename)
+        if filename.lower().endswith('.npy'):
+        # Read the .npy file using numpy
+            self.img = np.load(filename)
+        else:
+        # Read the file using skimage.io.imread
+            self.img = io.imread(filename)
         self.transforms = transforms
 
     def __len__(self):
