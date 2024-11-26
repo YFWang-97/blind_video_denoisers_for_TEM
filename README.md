@@ -28,7 +28,7 @@ pip install -r requirements.txt
 python denoise.py\
      --data path_to_tiff_file 
      --model UDVD 
-     --num-epochs 500
+     --num-epochs 50
      --batch-size 1
      --image-size 256
 ```
